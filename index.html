@@ -3,42 +3,60 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FLT2 - SQL Queries and Reporting</title>
+  <title>FLT2 - Transforming ER Model to Relational Tables</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <canvas id="sakura-falling"></canvas>
   <div class="sakura-animation"></div>
   <main class="container">
-    <h1>Finals Lab Task 2 - SQL Queries and Reporting</h1>
-    <p>This page contains my lab task on writing SQL queries to retrieve and report data from the database.</p>
+    <h1>Finals Lab Task 2 - Transforming ER Model to Relational Tables</h1>
+    <p>In this lab activity, I changed an ER (Entity-Relationship) model into MySQL tables. The ER model showed how students submit their assignments. I created tables for students, assignments, and submissions. I also added primary and foreign keys to connect the tables properly.</p>
 
     <section>
-      <h2>SQL Queries Executed</h2>
+      <h2>Steps I Followed</h2>
       <ul>
-        <li>SELECT statements with WHERE clauses for filtering</li>
-        <li>JOINs to combine related tables</li>
-        <li>GROUP BY and aggregate functions</li>
-        <li>ORDER BY for sorting results</li>
-        <li>Creating views for common reports</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>Reporting</h2>
-      <ul>
-        <li>Generated sales summary reports</li>
-        <li>Customer purchase history analysis</li>
-        <li>Inventory status and reorder reports</li>
+        <li><strong>Created a new database:</strong>
+          <ul>
+            <li>Used <code>CREATE DATABASE</code> to make the database.</li>
+            <li>Used <code>USE</code> to select the database.</li>
+          </ul>
+        </li>
+        <li><strong>Created the main tables:</strong>
+          <ul>
+            <li><strong>Student Table</strong> – Added <code>student_id</code>, <code>student_name</code>, and <code>email</code> using INT and VARCHAR.</li>
+            <li><strong>Assignment Table</strong> – Added <code>assignment_id</code>, <code>title</code>, <code>description</code>, and <code>due_date</code>.</li>
+            <li><strong>Submission Table</strong> – Added <code>submission_id</code>, <code>student_id</code>, <code>assignment_id</code>, and <code>submission_date</code>.</li>
+          </ul>
+        </li>
+        <li><strong>Connected the tables:</strong>
+          <ul>
+            <li>Used <code>PRIMARY KEY</code> in each table to set the main ID.</li>
+            <li>Used <code>FOREIGN KEY</code> in the Submission table to link it to the Student and Assignment tables.</li>
+            <li>Added <code>ON DELETE CASCADE</code> and <code>ON UPDATE CASCADE</code> to keep data linked correctly.</li>
+          </ul>
+        </li>
+        <li><strong>Checked the table structure:</strong>
+          <ul>
+            <li>Used <code>DESCRIBE</code> to check each table's design.</li>
+            <li>Exported the ER Diagram or relational schema from phpMyAdmin or MySQL Workbench.</li>
+          </ul>
+        </li>
       </ul>
     </section>
 
     <section class="screenshots">
-      <h2>SQL Query Examples</h2>
-      <img src="images/flt2_queries.png" alt="SQL Query examples screenshot" />
+      <h2>Here's the screenshot of my output for the Student's table</h2>
+      <img src="images/studenttbl.png" alt="Students Table Screenshot" />
 
-      <h2>Report Outputs</h2>
-      <img src="images/flt2_reports.png" alt="Report outputs screenshot" />
+      <h2>Here's the screenshot of my output for the Assignment's table</h2>
+      <img src="images/assignmenttbl.png" alt="Assignments Table Screenshot" />
+
+      <h2>Here's the screenshot of my output for the Submission's table</h2>
+      <img src="images/submissiontbl.png" alt="Submissions Table Screenshot" />
+
+      <h2>Here's the screenshot of my output for the ER Diagram/Relational Schema</h2>
+      <img src="images/ERDIAGRAM.PNG" alt="ER Diagram Screenshot" />
     </section>
   </main>
 
@@ -72,7 +90,6 @@
         petal.style.left = `${e.pageX}px`;
         petal.style.top = `${e.pageY}px`;
         document.body.appendChild(petal);
-
         setTimeout(() => petal.remove(), 1000);
       });
     });
