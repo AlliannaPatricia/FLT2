@@ -25,4 +25,4 @@ Here are the steps I followed:
 ## Here's the screenshot of my output for the Submission's table (See screenshot)
 ![Sample Output](images/submissiontbl.png)
 ## Here's the screenshot of my output for the ER Diagram/Relational Schema (See screenshot)
-![Sample Output](images/ERDIAGRAM.png)
+![Sample Output](images/ERDIAGRAM.PNG)
