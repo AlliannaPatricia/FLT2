@@ -2,41 +2,123 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FLT2 - Transforming ER Model to Relational Tables</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Finals Lab Task 2 - Transforming ER Model to Relational Tables</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Sawarabi+Mincho&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Sawarabi Mincho', serif;
+      background: linear-gradient(135deg, #ffe4e6, #fff0f6);
+      color: #6b495f;
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 3rem auto;
+      background-color: rgba(255, 240, 246, 0.95);
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(255, 183, 197, 0.3);
+      padding: 2.5rem 3rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    h1, h2 {
+      text-align: center;
+      color: #d6336c;
+      text-shadow: 1px 1px 2px #f9c6d3;
+    }
+
+    ul {
+      padding-left: 1.5rem;
+      line-height: 1.6;
+    }
+
+    .screenshots img {
+      display: block;
+      margin: 1rem auto 2rem auto;
+      width: 90%;
+      max-width: 600px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(255, 183, 197, 0.4);
+    }
+
+    .petal-trail {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      background: radial-gradient(circle at 40% 40%, rgba(255,182,193,0.9), rgba(255,192,203,0.3));
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      pointer-events: none;
+      z-index: 9999;
+      animation: trail-fall 1.5s linear forwards;
+    }
+
+    @keyframes trail-fall {
+      0% {
+        opacity: 1;
+        transform: translateY(0) rotate(0deg);
+      }
+      100% {
+        opacity: 0;
+        transform: translateY(40px) rotate(60deg);
+      }
+    }
+  </style>
 </head>
 <body>
-  <canvas id="sakura-falling"></canvas>
-  <div class="sakura-animation"></div>
-  <main class="container">
-    <h1>Finals Lab Task 2 - Transforming ER Model to Relational Tables</h1>
-    <p>In this lab activity, I changed an ER (Entity-Relationship) model into MySQL tables. The ER model showed how students submit their assignments. I created tables for students, assignments, and submissions. I also added primary and foreign keys to connect the tables properly.</p>
+  <canvas id="falling-petals-canvas"></canvas>
+
+  <div class="container">
+    <header>
+      <h1>Finals Lab Task 2</h1>
+      <h2>Transforming ER Model to Relational Tables</h2>
+    </header>
 
     <section>
-      <h2>Steps I Followed</h2>
+      <p>
+        In this lab activity, I changed an ER (Entity-Relationship) model into MySQL tables. The ER model showed how students submit their assignments. I created tables for students, assignments, and submissions. I also added primary and foreign keys to connect the tables properly.
+      </p>
       <ul>
-        <li><strong>Created a new database:</strong>
+        <li>
+          Created a new database
           <ul>
             <li>Used <code>CREATE DATABASE</code> to make the database.</li>
             <li>Used <code>USE</code> to select the database.</li>
           </ul>
         </li>
-        <li><strong>Created the main tables:</strong>
+        <li>
+          Created the main tables
           <ul>
-            <li><strong>Student Table</strong> – Added <code>student_id</code>, <code>student_name</code>, and <code>email</code> using INT and VARCHAR.</li>
-            <li><strong>Assignment Table</strong> – Added <code>assignment_id</code>, <code>title</code>, <code>description</code>, and <code>due_date</code>.</li>
-            <li><strong>Submission Table</strong> – Added <code>submission_id</code>, <code>student_id</code>, <code>assignment_id</code>, and <code>submission_date</code>.</li>
+            <li>Student Table – Added student_id, student_name, and email using INT and VARCHAR.</li>
+            <li>Assignment Table – Added assignment_id, title, description, and due_date.</li>
+            <li>Submission Table – Added submission_id, student_id, assignment_id, and submission_date.</li>
           </ul>
         </li>
-        <li><strong>Connected the tables:</strong>
+        <li>
+          Connected the tables
           <ul>
             <li>Used <code>PRIMARY KEY</code> in each table to set the main ID.</li>
             <li>Used <code>FOREIGN KEY</code> in the Submission table to link it to the Student and Assignment tables.</li>
             <li>Added <code>ON DELETE CASCADE</code> and <code>ON UPDATE CASCADE</code> to keep data linked correctly.</li>
           </ul>
         </li>
-        <li><strong>Checked the table structure:</strong>
+        <li>
+          Checked the table structure
           <ul>
             <li>Used <code>DESCRIBE</code> to check each table's design.</li>
             <li>Exported the ER Diagram or relational schema from phpMyAdmin or MySQL Workbench.</li>
@@ -47,58 +129,86 @@
 
     <section class="screenshots">
       <h2>Here's the screenshot of my output for the Student's table</h2>
-      <img src="images/studenttbl.png" alt="Students Table Screenshot" />
+      <img src="images/studenttbl.png" alt="Student Table Output" />
 
       <h2>Here's the screenshot of my output for the Assignment's table</h2>
-      <img src="images/assignmenttbl.png" alt="Assignments Table Screenshot" />
+      <img src="images/assignmenttbl.png" alt="Assignment Table Output" />
 
       <h2>Here's the screenshot of my output for the Submission's table</h2>
-      <img src="images/submissiontbl.png" alt="Submissions Table Screenshot" />
+      <img src="images/submissiontbl.png" alt="Submission Table Output" />
 
       <h2>Here's the screenshot of my output for the ER Diagram/Relational Schema</h2>
-      <img src="images/ERDIAGRAM.PNG" alt="ER Diagram Screenshot" />
+      <img src="images/ERDIAGRAM.png" alt="ER Diagram Output" />
     </section>
-  </main>
+  </div>
 
-  <!-- Sakura Falling Animation Script -->
-  <script src="https://cdn.jsdelivr.net/gh/lgarron/sakura/sakura.js"></script>
   <script>
-    const sakura = new Sakura('body', {
-      colors: [
-        {
-          gradientColorStart: 'rgba(255, 183, 197, 0.9)',
-          gradientColorEnd: 'rgba(255, 197, 208, 0.9)',
-          gradientColorDegree: 120
+    // Sakura falling petals canvas setup
+    const canvas = document.getElementById('falling-petals-canvas');
+    const ctx = canvas.getContext('2d');
+    let petals = [];
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
+    class Petal {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * -canvas.height;
+        this.size = Math.random() * 10 + 5;
+        this.speed = Math.random() * 2 + 1;
+        this.angle = Math.random() * 2 * Math.PI;
+      }
+
+      update() {
+        this.y += this.speed;
+        this.x += Math.sin(this.angle);
+        if (this.y > canvas.height) {
+          this.y = 0;
+          this.x = Math.random() * canvas.width;
         }
-      ],
-      maxSize: 14,
-      minSize: 9,
-      fallSpeed: 1.2
-    });
-  </script>
+      }
 
-  <!-- Sakura Trail Animation -->
-  <script>
-    document.addEventListener("DOMContentLoaded", function() {
-      const trail = document.createElement("div");
-      trail.className = "sakura-trail";
-      document.body.appendChild(trail);
+      draw() {
+        ctx.fillStyle = 'rgba(255,182,193,0.8)';
+        ctx.beginPath();
+        ctx.ellipse(this.x, this.y, this.size, this.size / 2, this.angle, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
 
-      document.addEventListener("mousemove", function(e) {
-        const petal = document.createElement("div");
-        petal.className = "sakura-petal";
-        petal.style.left = `${e.pageX}px`;
-        petal.style.top = `${e.pageY}px`;
-        document.body.appendChild(petal);
-        setTimeout(() => petal.remove(), 1000);
+    function initPetals() {
+      petals = [];
+      for (let i = 0; i < 100; i++) {
+        petals.push(new Petal());
+      }
+    }
+
+    function animatePetals() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      petals.forEach(petal => {
+        petal.update();
+        petal.draw();
       });
+      requestAnimationFrame(animatePetals);
+    }
+
+    initPetals();
+    animatePetals();
+
+    // Mouse trail petals (scroll-independent)
+    document.addEventListener('mousemove', function(e) {
+      const trail = document.createElement('div');
+      trail.className = 'petal-trail';
+      trail.style.left = e.pageX + 'px';
+      trail.style.top = e.pageY + window.scrollY + 'px';
+      document.body.appendChild(trail);
+      setTimeout(() => trail.remove(), 1500);
     });
   </script>
-
-  <!-- Background Music -->
-  <audio autoplay loop>
-    <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_4c73b93344.mp3?filename=serene-view-14757.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
 </body>
 </html>
